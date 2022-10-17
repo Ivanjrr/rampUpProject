@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.RampUp.EJAUNIV.entities.User;
-import com.RampUp.EJAUNIV.services.UserService;
+import com.RampUp.EJAUNIV.entities.Customer;
+import com.RampUp.EJAUNIV.services.CustomerService;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserResource {
+@RequestMapping(value = "/customer")
+public class CustomerResource {
 	@Autowired
-	private UserService service;
+	private CustomerService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> findAll(){
-		List<User> list = service.findAll();
+	public ResponseEntity<List<Customer>> findAll(){
+		List<Customer> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Integer id)	{
-		User obj = service.findById(id);
+	public ResponseEntity<Customer> findById(@PathVariable Integer id)	{
+		Customer obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

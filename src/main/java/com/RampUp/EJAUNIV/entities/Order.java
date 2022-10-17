@@ -1,46 +1,37 @@
 package com.RampUp.EJAUNIV.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "tb_user")
-public class User implements Serializable{
+@Table(name = "tb_order")
+public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String email;
-	private String password;
+	private Date instant;
 	
-	@OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
-	private Customer customer;	
+	private Customer client;
 	
-	@OneToMany(mappedBy = "user")
-	private List<Roles> roles = new ArrayList<>();
-	
-	public User() {
+	public Order() {
 		
 	}
 
-	public User(Integer id, String email, String password) {
+	public Order(Integer id, Date instant, Customer client) {
 		super();
 		this.id = id;
-		this.email = email;
-		this.password = password;
+		this.instant = instant;
+		this.client = client;
 	}
 
 	public Integer getId() {
@@ -51,20 +42,20 @@ public class User implements Serializable{
 		this.id = id;
 	}
 
-	public String getEmail() {
-		return email;
+	public Date getInstant() {
+		return instant;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setInstant(Date instant) {
+		this.instant = instant;
 	}
 
-	public String getPassword() {
-		return password;
+	public Customer getClient() {
+		return client;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setClient(Customer client) {
+		this.client = client;
 	}
 
 	@Override
@@ -80,9 +71,11 @@ public class User implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Order other = (Order) obj;
 		return Objects.equals(id, other.id);
 	}
 	
 	
+	
+
 }
