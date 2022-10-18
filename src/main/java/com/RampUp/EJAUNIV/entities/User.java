@@ -30,7 +30,7 @@ public class User implements Serializable{
 	private Customer customer;	
 	
 	@OneToMany(mappedBy = "user")
-	private List<Roles> roles = new ArrayList<>();
+	private List<Role> roles = new ArrayList<>();
 	
 	public User() {
 		
@@ -66,7 +66,19 @@ public class User implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
+	
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 
+	public List<Role> getRole(){
+		return roles;
+		
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

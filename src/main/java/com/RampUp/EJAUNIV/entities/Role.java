@@ -15,23 +15,24 @@ import com.RampUp.EJAUNIV.entities.enums.Authorities;
 
 @Entity
 @Table(name = "tb_roles")
-public class Roles implements Serializable {
+public class Role implements Serializable {
 	private static final long serialVersionUID = 1L; 
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
 	private Integer authorities;
 	
-	public Roles() {
+	public Role() {
 		
 	}
 	
-	public Roles(Integer id, User user, Authorities authorities) {
+	public Role(Integer id, User user, Authorities authorities) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -76,7 +77,7 @@ public class Roles implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Roles other = (Roles) obj;
+		Role other = (Role) obj;
 		return Objects.equals(id, other.id);
 	}
 	

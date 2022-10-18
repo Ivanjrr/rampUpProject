@@ -2,12 +2,17 @@ package com.RampUp.EJAUNIV.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -21,10 +26,14 @@ public class Order implements Serializable {
 	private Integer id;
 	private Date instant;
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Customer client;
 	
-	public Order() {
-		
+	@OneToMany(mappedBy = "id.order")
+	private Set<OrderItem> products = new HashSet<>();
+	
+	public Order() {	
 	}
 
 	public Order(Integer id, Date instant, Customer client) {
@@ -56,6 +65,10 @@ public class Order implements Serializable {
 
 	public void setClient(Customer client) {
 		this.client = client;
+	}
+	
+	public Set<OrderItem> getOrders(){
+		return products;
 	}
 
 	@Override

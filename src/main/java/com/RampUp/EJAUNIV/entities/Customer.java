@@ -9,11 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.RampUp.EJAUNIV.entities.enums.CostumerType;
 
 @Entity
 @Table(name = "tb_customer")
@@ -29,14 +30,16 @@ public class Customer implements Serializable {
 	private String creditScore;
 	private String password;
 	
+	private Integer costumerType;
+	
 	@OneToOne
 	@MapsId
 	private User client;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "client")
 	List<Address> addresses = new ArrayList<>();
 	
-	@ManyToOne
+	@OneToMany(mappedBy = "client")
 	List<Order> orders = new ArrayList<>();
 	
 	
@@ -45,13 +48,14 @@ public class Customer implements Serializable {
 	}
 
 	public Customer(Integer id, String customerName, String documentName, String customerStatus, String creditScore,
-			String password) {
+			String password, CostumerType customerType) {
 		this.id = id;
 		this.customerName = customerName;
 		this.documentName = documentName;
 		this.customerStatus = customerStatus;
 		this.creditScore = creditScore;
 		this.password = password;
+		setCustomerType(customerType);
 	}
 
 	public Integer getId() {
@@ -62,11 +66,11 @@ public class Customer implements Serializable {
 		this.id = id;
 	}
 
-	public String getCustumerName() {
+	public String getCustomerName() {
 		return customerName;
 	}
 
-	public void setCustumerName(String custumerName) {
+	public void setCustomerName(String custumerName) {
 		this.customerName = custumerName;
 	}
 
@@ -100,6 +104,24 @@ public class Customer implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public CostumerType getCustomerType() {
+		return CostumerType.valueOf(costumerType);
+	}
+	
+	public void setCustomerType(CostumerType costumerType) {
+		if(costumerType != null) {
+			this.costumerType = costumerType.getCode();
+		}
+	}
+	
+	public List<Address> getAddress() {
+		return addresses;
+	}
+	
+	public List<Order> getOrders() {
+		return orders;
 	}
 
 	@Override

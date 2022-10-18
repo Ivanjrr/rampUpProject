@@ -9,23 +9,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.RampUp.EJAUNIV.entities.Role;
-import com.RampUp.EJAUNIV.services.RolesService;
+import com.RampUp.EJAUNIV.entities.OrderItem;
+import com.RampUp.EJAUNIV.services.OrderItemService;
 
 @RestController
-@RequestMapping(value = "/roles")
-public class RolesResource {
+@RequestMapping(value = "/orderitem")
+public class OrderItemResource {
 	@Autowired
-	private RolesService service;
+	private OrderItemService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Role>> findAll(){
-		List<Role> list = service.findAll();
+	public ResponseEntity<List<OrderItem>> findAll(){
+		List<OrderItem> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Role> findById(@PathVariable Integer id)	{
-		Role obj = service.findById(id);
+	public ResponseEntity<OrderItem> findById(@PathVariable Integer id)	{
+		OrderItem obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 }

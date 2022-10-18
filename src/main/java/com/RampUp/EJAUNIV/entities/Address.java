@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.RampUp.EJAUNIV.entities.enums.AddressType;
@@ -30,6 +32,8 @@ public class Address implements Serializable{
 	
 	private Integer addressType;
 	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
 	private Customer client;
 
 	public Address(Integer id, String street, Integer houseNumber, String neighborhood, String complement,
