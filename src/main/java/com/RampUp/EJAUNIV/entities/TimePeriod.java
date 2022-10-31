@@ -28,16 +28,21 @@ public class TimePeriod implements Serializable{
 	private Date retireTime;
 	
 	@JsonIgnore
-	@MapsId
 	@OneToOne
 	private Characteristic characteristic;
 	
 	@JsonIgnore
-	@MapsId
 	@OneToOne
 	private ProductOffering productOffering;
 	
 	public TimePeriod() {	
+	}
+	
+	public TimePeriod(Date startDateTime, Date endDateTime, Date retireTime) {
+		super();
+		this.startDateTime = startDateTime;
+		this.endDateTime = endDateTime;
+		this.retireTime = retireTime;
 	}
 
 	public TimePeriod(Date startDateTime, Date endDateTime, Date retireTime, ProductOffering productOffering) {

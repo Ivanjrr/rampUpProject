@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.RampUp.EJAUNIV.entities.enums.CostumerType;
+import com.RampUp.EJAUNIV.entities.enums.CustomerType;
 
 @Entity
 @Table(name = "tb_customer")
@@ -30,10 +30,9 @@ public class Customer implements Serializable {
 	private String creditScore;
 	private String password;
 	
-	private Integer costumerType;
+	private Integer customerType;
 	
 	@OneToOne
-	@MapsId
 	private User client;
 	
 	@OneToMany(mappedBy = "client")
@@ -48,7 +47,7 @@ public class Customer implements Serializable {
 	}
 
 	public Customer(Integer id, String customerName, String documentName, String customerStatus, String creditScore,
-			String password, CostumerType customerType) {
+			String password, CustomerType customerType) {
 		this.id = id;
 		this.customerName = customerName;
 		this.documentName = documentName;
@@ -106,13 +105,13 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 	
-	public CostumerType getCustomerType() {
-		return CostumerType.valueOf(costumerType);
+	public CustomerType getCustomerType() {
+		return CustomerType.valueOf(customerType);
 	}
 	
-	public void setCustomerType(CostumerType costumerType) {
-		if(costumerType != null) {
-			this.costumerType = costumerType.getCode();
+	public void setCustomerType(CustomerType customerType) {
+		if(customerType != null) {
+			this.customerType = customerType.getCode();
 		}
 	}
 	

@@ -1,13 +1,13 @@
 package com.RampUp.EJAUNIV.entities.enums;
 
-public enum CostumerType {
+public enum CustomerType {
 	LegalPerson(1),
 	NaturalPerson(2),
 	Technical(3);
 	
 	private int code;
 
-	private CostumerType(int code) {
+	private CustomerType(int code) {
 		this.code = code;
 	}
 
@@ -15,8 +15,8 @@ public enum CostumerType {
 		return code;
 	}
 
-	public static CostumerType valueOf(int code) {
-		for (CostumerType value : CostumerType.values()) {
+	public static CustomerType valueOf(int code) {
+		for (CustomerType value : CustomerType.values()) {
 			if (value.getCode() == code) {
 				return value;
 			}

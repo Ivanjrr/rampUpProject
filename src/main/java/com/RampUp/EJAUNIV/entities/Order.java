@@ -1,11 +1,13 @@
 package com.RampUp.EJAUNIV.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -24,7 +27,7 @@ public class Order implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Date instant;
+	private Instant instant;
 	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
@@ -33,10 +36,13 @@ public class Order implements Serializable {
 	@OneToMany(mappedBy = "id.order")
 	private Set<OrderItem> products = new HashSet<>();
 	
+	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+	private Payment payment;
+	
 	public Order() {	
 	}
 
-	public Order(Integer id, Date instant, Customer client) {
+	public Order(Integer id, Instant instant, Customer client) {
 		super();
 		this.id = id;
 		this.instant = instant;
@@ -51,11 +57,11 @@ public class Order implements Serializable {
 		this.id = id;
 	}
 
-	public Date getInstant() {
+	public Instant getInstant() {
 		return instant;
 	}
 
-	public void setInstant(Date instant) {
+	public void setInstant(Instant instant) {
 		this.instant = instant;
 	}
 
@@ -71,6 +77,14 @@ public class Order implements Serializable {
 		return products;
 	}
 
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -87,6 +101,8 @@ public class Order implements Serializable {
 		Order other = (Order) obj;
 		return Objects.equals(id, other.id);
 	}
+
+
 	
 	
 	

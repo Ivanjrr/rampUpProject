@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.RampUp.EJAUNIV.entities.Customer;
-import com.RampUp.EJAUNIV.entities.User;
 import com.RampUp.EJAUNIV.repositories.CustomerRepository;
 
 @Service
@@ -45,6 +44,7 @@ public class CustomerService {
 		entity.setCustomerStatus(obj.getCustomerStatus());
 		entity.setDocumentName(obj.getDocumentName());
 		entity.setCreditScore(obj.getCreditScore());
+		entity.setCustomerType(obj.getCustomerType());
 		
 	}
 }

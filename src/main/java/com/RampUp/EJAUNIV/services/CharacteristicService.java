@@ -23,5 +23,26 @@ public class CharacteristicService {
 		Optional<Characteristic> obj = repository.findById(id);
 		return obj.get();
 	}
-
+	
+	public Characteristic insert(Characteristic obj) {
+		return repository.save(obj);
+	}
+	
+	public void delete(Integer id) {
+			repository.deleteById(id);
+	}
+	
+	public Characteristic update(Integer id, Characteristic obj){
+		Characteristic entity = repository.getReferenceById(id);
+		updateData(entity, obj);
+		return repository.save(entity);
+		
+	}
+	
+	private void updateData(Characteristic entity, Characteristic obj) {
+		entity.setName(obj.getName());
+		entity.setValidFor(obj.getValidFor());
+		entity.setType(obj.getType());
+		entity.setValueType(obj.getValueType());
+	}
 }

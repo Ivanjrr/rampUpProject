@@ -15,29 +15,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.RampUp.EJAUNIV.entities.Order;
-import com.RampUp.EJAUNIV.entities.Order;
-import com.RampUp.EJAUNIV.services.OrderService;
+import com.RampUp.EJAUNIV.entities.Role;
+import com.RampUp.EJAUNIV.services.RoleService;
 
 @RestController
-@RequestMapping(value = "/order")
-public class OrderResource {
+@RequestMapping(value = "/roles")
+public class RoleResource {
 	@Autowired
-	private OrderService service;
+	private RoleService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Order>> findAll(){
-		List<Order> list = service.findAll();
+	public ResponseEntity<List<Role>> findAll(){
+		List<Role> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Order> findById(@PathVariable Integer id)	{
-		Order obj = service.findById(id);
+	public ResponseEntity<Role> findById(@PathVariable Integer id)	{
+		Role obj = service.findById(id);
 		return ResponseEntity.ok().body(obj);
 	}
 	
 	@PostMapping
-	public ResponseEntity<Order> insert(@RequestBody Order obj) {
+	public ResponseEntity<Role> insert(@RequestBody Role obj) {
 			obj = service.insert(obj);
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 			
@@ -51,9 +50,9 @@ public class OrderResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Order> update(@PathVariable Integer id, @RequestBody Order obj){
+	public ResponseEntity<Role> update(@PathVariable Integer id, @RequestBody Role obj){
 		obj = service.update(id, obj);
 		return ResponseEntity.ok().body(obj);
 	}
-
 }
+

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.RampUp.EJAUNIV.entities.Customer;
-import com.RampUp.EJAUNIV.entities.User;
 import com.RampUp.EJAUNIV.services.CustomerService;
 
 @RestController

@@ -27,7 +27,7 @@ public class Characteristic implements Serializable{
 	private String name;
 	private String valueType;
 	
-	private Integer characteristicType;
+	private Integer Type;
 	
 	@ManyToMany(mappedBy = "characteristics")
 	private Set<ProductOffering> productOfferings = new HashSet<>();
@@ -38,12 +38,12 @@ public class Characteristic implements Serializable{
 	public Characteristic() {
 	}
 
-	public Characteristic(Integer id, String name, String valueType, CharacteristicType characteristicType, TimePeriod validFor) {
+	public Characteristic(Integer id, String name, String valueType, CharacteristicType Type, TimePeriod validFor) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.valueType = valueType;
-		setCharacteristicType(characteristicType);
+		setType(Type);
 		this.validFor = validFor;
 	}
 
@@ -71,13 +71,13 @@ public class Characteristic implements Serializable{
 		this.valueType = valueType;
 	}
 
-	public CharacteristicType getCharacteristicType() {
-		return CharacteristicType.valueOf(characteristicType);
+	public CharacteristicType getType() {
+		return CharacteristicType.valueOf(Type);
 	}
 
-	public void setCharacteristicType(CharacteristicType characteristicType) {
-		if (characteristicType != null) {
-			this.characteristicType = characteristicType.getCode();
+	public void setType(CharacteristicType Type) {
+		if (Type != null) {
+			this.Type = Type.getCode();
 		}
 	}
 	
